@@ -22,6 +22,16 @@ class Disciplines(Base):
 	name = Column(String(80), nullable = False)
 	id = Column(Integer, primary_key = True)
 
+
+class Users(Base):
+	__tablename__ = 'users'
+	id = Column(Integer, primary_key = True)	
+	first_name = Column(String(100), nullable = False)
+	last_name = Column(String(100), nullable = False)
+	email = Column(String(100), nullable = False)
+	picture = Column(String(100))
+	
+
 class Journals(Base):
 	__tablename__ = 'journals'
 	id = Column(Integer, primary_key = True)	
@@ -38,14 +48,6 @@ class Journals(Base):
 	disciplines = relationship(Disciplines)
 	users = relationship(Users)
 
-class Users(Base):
-	__tablename__ = 'users'
-	id = Column(Integer, primary_key = True)	
-	first_name = Column(String(100), nullable = False)
-	last_name = Column(String(100), nullable = False)
-	email = Column(String(100), nullable = False)
-	picture = Column(String(100))
-	
 
 ## final
 
