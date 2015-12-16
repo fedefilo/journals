@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+{% block content %}
+
+	{% for d in disciplines %}
+		<h4> {{d.name}}  </h4>
+	{% endfor %}
+
+	{% for j in items %}
+		<p> {{j.title}}</p>
+	{% endfor %}
+
+{% endblock %}
