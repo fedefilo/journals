@@ -3,7 +3,7 @@
 
 	<h2> {{title}}
 	{% for j in items %}
-		<h4> <em>Title: </em> {{j.title}}</h4>
+		<h4> <em>Title: </em> <a href="{{url_for('journalPage', journal_id = j.id)}}">{{j.title}}</a></h4>
 		<p> <em>ISSN: </em>{{j.issn}}</p>
 		<p> <em>Description: </em>{{j.description}}</p>
 	{% endfor %}

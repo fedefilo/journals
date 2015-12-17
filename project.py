@@ -34,17 +34,28 @@ def HomePage():
 def discipline(discipline_id):
 	journals = session.query(Journals).filter_by(discipline_id = discipline_id)
 	discipline_name = session.query(Disciplines).filter_by(id = discipline_id).one()
-	print journals, discipline_name
 	return render_template("categories.html", title = discipline_name.name, items = journals, name = discipline_name.name)
 
-@app.route('/login')
 
-# Create anti-forgery state token
-def showLogin():
-    state = ''.join(random.choice(string.ascii_uppercase + string.digits)
-                    for x in xrange(32))
-    login_session['state'] = state
-    return render_template('login.html', STATE=state)
+@app.route('/journal/<int:journal_id>/')
+
+def journalPage(journal_id):
+	journal = session.query(Journals).filter_by(id = journal_id).one()
+	if journal.picture is None:
+		journal.picture = "default.jpg"
+	discipline_name = session.query(Disciplines).filter_by(id = journal.discipline_id).one()
+	return render_template('journal_page.html', title = journal.title, item = journal, discipline = discipline_name.name)
+
+
+
+# @app.route('/login')
+
+# # Create anti-forgery state token
+# def showLogin():
+#     state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+#                     for x in xrange(32))
+#     login_session['state'] = state
+#     return render_template('login.html', STATE=state)
 
 if __name__ == '__main__':
   app.secret_key = 'super_secret_key'
