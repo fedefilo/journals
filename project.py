@@ -24,11 +24,18 @@ app = Flask(__name__)
 
 @app.route('/')
 
-def HelloWorld():
+def HomePage():
 	allr = session.query(Journals).all()
 	disciplines = session.query(Disciplines).all()
-	return render_template('home.html', items = allr, disciplines = disciplines)
+	return render_template('home.html', title = "HomePage", items = allr, disciplines = disciplines)
 
+@app.route('/disciplines/<int:discipline_id>/')
+
+def discipline(discipline_id):
+	journals = session.query(Journals).filter_by(discipline_id = discipline_id)
+	discipline_name = session.query(Disciplines).filter_by(id = discipline_id).one()
+	print journals, discipline_name
+	return render_template("categories.html", title = discipline_name.name, items = journals, name = discipline_name.name)
 
 @app.route('/login')
 
