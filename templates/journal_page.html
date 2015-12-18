@@ -2,7 +2,7 @@
 {% block content %}
 
 	<h2> {{item.title}} </h2>
-	<img src="{{url_for('static', filename=item.picture)}}" alt="Journal cover">
+	<img src="{{url_for('static', filename="pictures/" + item.picture)}}" alt="Journal cover">
 	
 	<p> <em>ISSN: </em>{{item.issn}}</p>
 	<p> <em>Publisher: </em>{{item.publisher}}</p>
